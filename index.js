@@ -44,4 +44,23 @@ app.post('/event', (req, res) => {
   res.status(200).send('');
 });
 
+app.post('/answer', (req, res) => {
+  const number = req.body.from.split('').join(' ');
+  const ncco = [
+    {
+      action: 'talk',
+      text: 'Thank you for calling from ' + number,
+      language: 'en-IN',
+      style: '4'
+    },
+    {
+      action: 'stream',
+      streamUrl: [
+        'https://www.albinoblacksheep.com/audio/mp3/RickRollMarioPaint.mp3'
+      ]
+    }
+  ];
+  res.json(ncco);
+});
+
 app.listen(process.env.PORT, () => console.log(`Running on port ${process.env.PORT}`));
